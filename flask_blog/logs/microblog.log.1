@@ -1,0 +1,99 @@
+2019-12-15 12:45:30,781 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 12:45:46,464 ERROR: Exception on /edit_profile [POST] [in c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py:1780]
+Traceback (most recent call last):
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\_compat.py", line 36, in reraise
+    raise value
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\40382\Desktop\研一上课程\flask_blog\app\routes.py", line 101, in edit_profile
+    db.session.commit()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 1026, in commit
+    self.transaction.commit()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 493, in commit
+    self._prepare_impl()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 472, in _prepare_impl
+    self.session.flush()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 2451, in flush
+    self._flush(objects)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 2589, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\util\compat.py", line 129, in reraise
+    raise value
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\session.py", line 2549, in _flush
+    flush_context.execute()
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\persistence.py", line 236, in save_obj
+    update,
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\orm\persistence.py", line 978, in _emit_update_statements
+    statement, multiparams
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\util\compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\util\compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\40382\appdata\local\programs\python\python37\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
+[parameters: ('susan', '刘力玮', 2)]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2019-12-15 12:53:09,710 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 13:11:25,627 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 13:11:55,668 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 13:12:03,558 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 15:33:46,966 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 15:40:43,601 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:03:27,772 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:14:02,155 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:14:37,554 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:38:28,711 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:43:19,876 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 16:45:11,804 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 18:21:48,558 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 18:23:48,869 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 18:39:24,604 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 18:42:22,599 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 19:03:36,175 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 19:17:41,449 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 19:25:50,643 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:48]
+2019-12-15 19:50:05,746 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\Flask_blog_version\flask_blog0.92\app\__init__.py:48]
+2019-12-15 21:39:14,669 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:50]
+2019-12-15 21:42:37,445 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:50]
+2019-12-15 22:06:15,845 INFO: Microblog startup [in C:\Users\40382\Desktop\研一上课程\flask_blog\app\__init__.py:50]
