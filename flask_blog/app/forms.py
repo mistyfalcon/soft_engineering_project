@@ -1,7 +1,7 @@
 # -*- coding:utf8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
 
@@ -50,14 +50,39 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField('说点什么', validators=[
-        DataRequired(), Length(min=1, max=140)])
+    # post = TextAreaField('说点什么', validators=[
+    S = '想分享什么模式呢？'
+    '''post = TextAreaField('说点什么吧：', validators=[
+        DataRequired(), Length(min=1, max=140)])'''
+    '''pattern = TextAreaField(S, validators=[
+        DataRequired(), Length(min=1, max=140)])'''
+    # c = [(1, '1'), (2, '2'), (3, '3')]
+    c = [('电视机开12:30，电视机关15:30', '电视机开12:30，电视机关15:30'),
+         ('灯开12:30，灯关15:30', '灯开12:30，灯关15:30'),
+         ('洗衣机开12:30，洗衣机关15:30', '洗衣机开12:30，洗衣机关15:30111111111111111111111111111111111111111111'
+             '111111111111111111111111111111111111111111111111111111111111111111111'
+             '111111111111111111111111111111111111111111111111111111111111111111')]
+    post = SelectField(label='请选择想要发布的模式',
+        validators=[DataRequired('请选择标签')],
+        render_kw={
+            'class': 'form-control'
+        },
+        choices=c,
+        # default = 3,
+        coerce=str
+                          )
+    submit = SubmitField('提交')
+
+
+class PatternForm(FlaskForm):
+    pattern1 = '洗衣机11:30'
+    pattern2 = '电视12:50'
     submit = SubmitField('提交')
 
 
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('邮箱', validators=[DataRequired(), Email()])
-    submit = SubmitField('请求重置密码t')
+    submit = SubmitField('请求重置密码')
 
 
 class ResetPasswordForm(FlaskForm):
@@ -65,3 +90,7 @@ class ResetPasswordForm(FlaskForm):
     password2 = PasswordField(
         '重复输入密码', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('重置密码')
+
+
+
+

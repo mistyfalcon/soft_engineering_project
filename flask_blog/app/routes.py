@@ -4,14 +4,13 @@
 # 从app模块中即从__init__.py中导入创建的app应用
 from flask import render_template, flash, redirect, url_for
 from app import app, db
-from app.forms import LoginForm, EditProfileForm, RegistrationForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms import LoginForm, EditProfileForm, RegistrationForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm, PatternForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from flask import request
 from werkzeug.urls import url_parse
 from datetime import datetime
 from app.email import send_password_reset_email
-from guess_language import guess_language
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -20,15 +19,27 @@ from guess_language import guess_language
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        language = guess_language(form.post.data)
-        if language == 'UNKNOWN' or len(language) > 5:
-            language = ''
+        # language = guess_language(form.post.data)
+        # if language == 'UNKNOWN' or len(language) > 5:
+        #    language = ''
         post = Post(body=form.post.data, author=current_user,
-                    language=language)
+                    #anguage=language)
+                    )
         db.session.add(post)
         db.session.commit()
-        flash('Your post is now live!')
+        flash('您的模式已发布成功！')
         return redirect(url_for('index'))
+
+    '''if form2.validate_on_submit():
+        language = guess_language(form2.pattern.data)
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        pattern = Post(pattern=form2.pattern.pattern2, author=current_user,
+                    language=language)
+        db.session.add(pattern)
+        db.session.commit()
+        flash('Your pattern is now live!')
+        return redirect(url_for('index'))'''
 
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
@@ -42,6 +53,7 @@ def index():
                            prev_url=prev_url)
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -50,7 +62,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('用户名或密码错误！')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
