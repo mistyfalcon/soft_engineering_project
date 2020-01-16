@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
+from app.np4 import  *
 
 
 class LoginForm(FlaskForm):
@@ -62,12 +63,23 @@ class PostForm(FlaskForm):
          ('洗衣机开12:30，洗衣机关15:30', '洗衣机开12:30，洗衣机关15:30111111111111111111111111111111111111111111'
              '111111111111111111111111111111111111111111111111111111111111111111111'
              '111111111111111111111111111111111111111111111111111111111111111111')]
+    S = read("s&t3.0.txt")
+    # S2 = read("sequence.txt")
+    S2 = open("record.txt", 'w+')
+    # print(S)
+    num_p = 0
+    patterns = NprefixSpan(SquencePattern([], sys.maxsize), S, 3)
+    new_patterns = filter_patterns(patterns)
+    # print_patterns(patterns)
+    npprefix = print_patterns(S, S2, new_patterns)
+    a = npprefix.prefix3
+
     post = SelectField(label='请选择想要发布的模式',
         validators=[DataRequired('请选择标签')],
         render_kw={
             'class': 'form-control'
         },
-        choices=c,
+        choices=a,
         # default = 3,
         coerce=str
                           )
